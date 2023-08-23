@@ -1,90 +1,161 @@
 'use strict'
 
+var gSrcImg=''
 var gImages = [
     {
         id: 1,
-        url: 'img/1.jpg',
+        url: 'site/images/1.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 2,
-        url: 'img/2.jpg',
+        url: 'site/images/2.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 3,
-        url: 'img/3.jpg',
+        url: 'site/images/3.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 4,
-        url: 'img/4.jpg',
+        url: 'site/images/4.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 5,
-        url: 'img/1.jpg',
+        url: 'site/images/5.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 6,
-        url: 'img/1.jpg',
+        url: 'site/images/6.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 7,
-        url: 'img/1.jpg',
+        url: 'site/images/7.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 8,
-        url: 'img/1.jpg',
+        url: 'site/images/8.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 9,
-        url: 'img/1.jpg',
+        url: 'site/images/9.jpg',
+        keywords: ['funny', 'cat'],
+    },
+    {
+        id: 10,
+        url: 'site/images/10.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 11,
-        url: 'img/1.jpg',
+        url: 'site/images/11.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 12,
-        url: 'img/1.jpg',
+        url: 'site/images/12.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 13,
-        url: 'img/1.jpg',
+        url: 'site/images/13.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 14,
-        url: 'img/1.jpg',
+        url: 'site/images/14.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 15,
-        url: 'img/1.jpg',
+        url: 'site/images/15.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 16,
-        url: 'img/1.jpg',
+        url: 'site/images/16.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 17,
-        url: 'img/1.jpg',
+        url: 'site/images/17.jpg',
         keywords: ['funny', 'cat'],
     },
     {
-        id: 12,
-        url: 'img/1.jpg',
+        id: 18,
+        url: 'site/images/18.jpg',
+        keywords: ['funny', 'cat'],
+    },
+    {
+        id: 19,
+        url: 'site/images/19.jpg',
+        keywords: ['funny', 'cat'],
+    },
+    {
+        id: 20,
+        url: 'site/images/20.jpg',
         keywords: ['funny', 'cat'],
     },
 ]
-var gMeme
+var gMeme = {
+    selectedImgId:gSrcImg,
+    selectedImg:gImages.id,
+    selectedLineIdx: 0,
+    lines: [
+       {
+           txt: 'I sometimes eat Falafel',
+           size: 20,
+           color: 'red'
+       }
+   ],
+}
+
+function getEvPos(ev) {
+
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+
+    if (TOUCH_EVS.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
+}
+function drawText(text, x, y) {
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = 'white'
+    gCtx.fillStyle = 'white'
+    gCtx.font = '20px Arial'
+    // gCtx.textAlign = 'center'
+    // gCtx.textBaseline = 'middle'
+    gCtx.fillText(text, x, y)
+
+}
+function setImage(elImg) {
+    
+    console.log('elImg.data:', elImg.dataset.img)
+    var imgSrc=elImg.dataset.img
+    var img= new Image();
+    img.src=imgSrc
+    console.log('img:', img)
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    // drawText('Put Here Your Punch Line', 100, 50)
+}
+
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.clientWidth - 2
+}

@@ -8,28 +8,52 @@ body {
   justify-content: space-evenly;
 }
 
-.canvas-container {
-  width: 60vw;
-  height: 80vh;
+input {
+  position: absolute;
+  top: 5em;
+  left: 5em;
+  background: none;
+  border: none;
+  font-size: x-large;
+}
+input::placeholder {
+  color: blue
+}
+h3{
+  margin-inline-start: 200px;
 }
 
+.hidden {
+  display: none;
+}
+
+/* .canvas-container {
+  width: 60vw;
+  height: 80vh;
+} */
+
 canvas {
+  
   background-color: rgb(215, 203, 188);
   border: 1px solid black;
+}
+.canvas-container{
+  position: relative;
 }
 
 .select-img-container {
   border: 1px solid black;
   display: grid;
   grid-template-columns: repeat(6, 80px);
- 
+  gap: 5px;
+
 }
 
 img {
-  height: 50px;
-  width: 50px;
+  height: 80px;
+  width: 80px;
   cursor: pointer;
-  filter: grayscale(1);
+  filter: grayscale(8);
 }
 
 img:hover {

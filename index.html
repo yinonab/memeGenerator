@@ -10,14 +10,19 @@
 
 <body onload="onInit()">
     <h1>MEME-GENERATOR</h1>
+    <button onclick="onOpenGallery()">Images-Gallery</button>
 
     <div class="canvas-container">
-        <canvas width="450" height="450" onclick="onDraw(event)">
+        <canvas width="450" height="450">
         </canvas>
+        <input class="txt hidden" placeholder="Put Here Your Punch Line" type="text" id="textInput">
+</div>
+        <!-- <input type="text" class="txt" placeholder="Put Here Your Punch Line"> -->
     </div>
+    <div class="images-container hidden">
     <h3>Select an image</h3>
-    <section class="select-img-container">
-        <img class="image" src="site/images/1.jpg" onclick="onSelectImg(this)" />
+    <section class="select-img-container" >
+        <!-- <img class="image" src="site/images/1.jpg" onclick="onSelectImg()" />
         <img class="image" src="site/images/2.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/3.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/4.jpg" onclick="onSelectImg(this)" />
@@ -26,6 +31,7 @@
         <img class="image" src="site/images/7.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/8.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/9.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="site/images/10.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/11.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/12.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/13.jpg" onclick="onSelectImg(this)" />
@@ -34,7 +40,12 @@
         <img class="image" src="site/images/16.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/17.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/18.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="site/images/19.jpg" onclick="onSelectImg(this)" /> 
+        <img class="image" src="site/images/20.jpg" onclick="onSelectImg(this)" />  -->
     </section>
+</div>
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
     <script src="js/meme.controler.js"></script>
 </body>
 

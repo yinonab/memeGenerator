@@ -43,6 +43,9 @@ function removeClass(className, selector) {
 function addClass(className, selector) {
     document.querySelector(`.${selector}`).classList.add(className)
 }
+function toggleClass(className, selector) {
+    document.querySelector(`.${selector}`).classList.toggle(className)
+}
 
 function setElText(selector, txt) {
     const el = document.querySelector(`.${selector}`)

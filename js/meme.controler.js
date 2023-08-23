@@ -6,30 +6,26 @@ let gCtx
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+    renderImagesGallery()
 }
-
-function drawImg() {
-    debugger
-    const elImg = new Image()
-    elImg.src = 'site/images/1.jpg'
-    elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
-    }
-}
-
 function onSelectImg(elImg) {
-    coverCanvasWithImg(elImg)
+    setImage(elImg)
+    removeClass('hidden', 'txt')
 }
-
-// Lets cover a fixed-width canvas using an img
-// changing the canvas height
-function coverCanvasWithImg(elImg) {
-    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+function onOpenGallery() {
+    toggleClass('hidden', 'images-container')
 }
+function OnRenderMeme() {
+    setImage(img)
+    drawText('Put Here Your Punch Line', 125, 125)
 
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    // Changing the canvas dimension clears the canvas
-    gElCanvas.width = elContainer.clientWidth - 2
+}
+function renderImagesGallery() {
+    var imges = gImages
+    console.log('image.id:', imges.url)
+    console.log('variable:', imges.url)
+    var strHtml = imges.map(img => `
+    <img data-img="${img.url}" class="image" src="${img.url}" onclick="onSelectImg(this)" />
+    `).join('')
+    setElHtml('select-img-container', strHtml)
 }
