@@ -11,7 +11,7 @@ function onInit() {
 function drawImg() {
     debugger
     const elImg = new Image()
-    elImg.src = 'SITE/images/1.jpg'
+    elImg.src = 'site/images/1.jpg'
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
     }
