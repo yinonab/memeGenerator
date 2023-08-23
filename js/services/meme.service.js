@@ -1,10 +1,11 @@
 'use strict'
-
+var gImageSrc
 var gSrcImg=''
+var gElText
 var gImages = [
     {
         id: 1,
-        url: 'site/images/1.jpg',
+        url: './site/images/1.jpg',
         keywords: ['funny', 'cat'],
     },
     {
@@ -103,17 +104,16 @@ var gImages = [
         keywords: ['funny', 'cat'],
     },
 ]
-var gMeme = {
-    selectedImgId:gSrcImg,
-    selectedImg:gImages.id,
-    selectedLineIdx: 0,
-    lines: [
-       {
-           txt: 'I sometimes eat Falafel',
-           size: 20,
-           color: 'red'
-       }
-   ],
+var gMeme = { 
+    selectedImgId: gImageSrc, 
+    selectedLineIdx: 0, 
+    lines: [ 
+            { 
+                txt: 'I sometimes eat Falafel', 
+                size: 20, 
+                color: 'red' 
+            } 
+    ] 
 }
 
 function getEvPos(ev) {
@@ -143,17 +143,33 @@ function drawText(text, x, y) {
     gCtx.fillText(text, x, y)
 
 }
-function setImage(elImg) {
-    
-    console.log('elImg.data:', elImg.dataset.img)
-    var imgSrc=elImg.dataset.img
+function getMem(elImg) {
+    var userInput=document.querySelector('.txt').value
+    userInput=''
+    console.log('elImg.data:', gImageSrc)
+    gImageSrc=elImg.dataset.img
     var img= new Image();
-    img.src=imgSrc
+    img.src=gImageSrc
     console.log('img:', img)
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    // drawText('Put Here Your Punch Line', 100, 50)
+    drawText('Put Here Your Punch Line', 100, 50)
+    console.log('gMeme:', gMeme)
+    console.log('gImageSrc:', gImageSrc)
+    gMeme.selectedImgId=gImageSrc
 }
+function saveText(){
+    var userInput=document.querySelector('.txt').value
+    gElText=userInput
+    console.log(userInput);
+    gMeme.lines[0].txt=userInput
+    var img= new Image();
+    img.src=gImageSrc
+    console.log('img:', img)
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    drawText(userInput, 100, 50)
+  }
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')

@@ -7,10 +7,10 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderImagesGallery()
+    createMeme()
 }
 function onSelectImg(elImg) {
-    setImage(elImg)
-    removeClass('hidden', 'txt')
+    getMem(elImg)
 }
 function onOpenGallery() {
     toggleClass('hidden', 'images-container')
@@ -29,3 +29,7 @@ function renderImagesGallery() {
     `).join('')
     setElHtml('select-img-container', strHtml)
 }
+function onDownloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+    elLink.href = imgContent
+  }
