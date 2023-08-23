@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="SITE/style/style.css">
 </head>
-<body>
+
+<body onload="onInit()">
     <h1>MEME-GENERATOR</h1>
 
     <div class="canvas-container">
         <canvas width="450" height="450" onclick="onDraw(event)">
         </canvas>
-      </div>
+    </div>
+    <h3>Select an image</h3>
+    <section class="select-img-container">
+        <img class="image" src="SITE/images/1.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/2.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/3.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/4.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/5.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/6.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/7.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/8.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/9.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/11.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/12.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/13.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/14.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/15.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/16.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/17.jpg" onclick="onSelectImg(this)" />
+        <img class="image" src="SITE/images/18.jpg" onclick="onSelectImg(this)" />
+    </section>
+    <script src="js/meme.controler.js"></script>
 </body>
+
 </html>
