@@ -28,7 +28,7 @@ body {
   font-size: x-large;
 } */
 input::placeholder {
-  color: blue
+  color: rgb(12, 12, 13)
 }
 h3{
   margin-inline-start: 200px;

@@ -2,6 +2,7 @@
 var gImageSrc
 var gSrcImg=''
 var gElText
+var gLine =0
 var gImages = [
     {
         id: 1,
@@ -112,6 +113,11 @@ var gMeme = {
                 txt: 'I sometimes eat Falafel', 
                 size: 20, 
                 color: 'red' 
+            } ,
+            { 
+                txt: 'I sometimes eat Falafel', 
+                size: 20, 
+                color: 'red' 
             } 
     ] 
 }
@@ -125,7 +131,7 @@ function getEvPos(ev) {
 
     if (TOUCH_EVS.includes(ev.type)) {
         ev.preventDefault()
-        ev = ev.changedTouches[0]
+        ev = ev.changedTouches[gLine]
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
@@ -136,41 +142,50 @@ function getEvPos(ev) {
 function drawText(text, x, y) {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'white'
-    gCtx.fillStyle = 'white'
-    gCtx.font = '20px Arial'
-    // gCtx.textAlign = 'center'
-    // gCtx.textBaseline = 'middle'
+    gCtx.fillStyle = gMeme.lines[gLine].color
+    gCtx.font = gMeme.lines[gLine].size+'px Arial'
     gCtx.fillText(text, x, y)
 
 }
-function getMem(elImg) {
-    var userInput=document.querySelector('.txt').value
-    userInput=''
-    console.log('elImg.data:', gImageSrc)
+function clearInput(){
+    var userInput=document.querySelector('.txt')
+    userInput.value=''
+    gMeme.lines[gLine].size=20
+}
+function setImage(elImg){
     gImageSrc=elImg.dataset.img
     var img= new Image();
     img.src=gImageSrc
-    console.log('img:', img)
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText('Put Here Your Punch Line', 100, 50)
-    console.log('gMeme:', gMeme)
-    console.log('gImageSrc:', gImageSrc)
+}
+function getMem(elImg) {
+    clearInput()
+    setImage(elImg)
+    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 70, 40)
     gMeme.selectedImgId=gImageSrc
 }
-function saveText(){
+function changeText(){
+    // debugger
     var userInput=document.querySelector('.txt').value
     gElText=userInput
     console.log(userInput);
-    gMeme.lines[0].txt=userInput
+    gMeme.lines[gLine].txt=userInput
     var img= new Image();
-    img.src=gImageSrc
-    console.log('img:', img)
+    img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText(userInput, 100, 50)
+    drawText(gMeme.lines[gLine].txt, 100, 50)
   }
+function addLine(){
 
+    var img= new Image();
+    img.src=gMeme.selectedImgId
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    drawText(gMeme.lines[gLine].txt, 100, 50)
+    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 70, 140)
+  }
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.clientWidth - 2

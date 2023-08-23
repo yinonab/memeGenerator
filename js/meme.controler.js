@@ -1,5 +1,5 @@
 'use strict'
-
+let gColor = ''
 let gElCanvas
 let gCtx
 
@@ -29,6 +29,28 @@ function renderImagesGallery() {
     setElHtml('select-img-container', strHtml)
 }
 function onDownloadImg(elLink) {
-    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
-  }
+}
+function onClickPlus() {
+    gMeme.lines[0].size += 1
+    changeText()
+}
+function onClickMinus() {
+    gMeme.lines[0].size -= 1
+    changeText()
+}
+
+function onChangeClr(clr) {
+    gColor = clr
+    gMeme.lines[0].color = gColor
+    changeText()
+    console.log('gMeme:', gMeme)
+}
+function onAddLine() {
+    addLine()
+}
+function onSwitchLine(ev) {
+    gLine +=1
+   
+}
