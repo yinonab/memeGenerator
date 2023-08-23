@@ -7,7 +7,6 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderImagesGallery()
-    createMeme()
 }
 function onSelectImg(elImg) {
     getMem(elImg)
