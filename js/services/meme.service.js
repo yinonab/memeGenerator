@@ -3,105 +3,106 @@ var gImageSrc
 var gSrcImg=''
 var gElText
 var gLine =0
+let gColor 
 var gImages = [
     {
         id: 1,
-        url: './site/images/1.jpg',
+        url: './images/1.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 2,
-        url: './site/images/2.jpg',
+        url: './images/2.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 3,
-        url: './site/images/3.jpg',
+        url: './images/3.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 4,
-        url: './site/images/4.jpg',
+        url: './images/4.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 5,
-        url: './site/images/5.jpg',
+        url: './images/5.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 6,
-        url: './site/images/6.jpg',
+        url: './images/6.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 7,
-        url: './site/images/7.jpg',
+        url: './images/7.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 8,
-        url: './site/images/8.jpg',
+        url: './images/8.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 9,
-        url: './site/images/9.jpg',
+        url: './images/9.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 10,
-        url: './site/images/10.jpg',
+        url: './images/10.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 11,
-        url: './site/images/11.jpg',
+        url: './images/11.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 12,
-        url: './site/images/12.jpg',
+        url: './images/12.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 13,
-        url: './site/images/13.jpg',
+        url: './images/13.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 14,
-        url: './site/images/14.jpg',
+        url: './images/14.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 15,
-        url: './site/images/15.jpg',
+        url: './images/15.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 16,
-        url: './site/images/16.jpg',
+        url: './images/16.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 17,
-        url: './site/images/17.jpg',
+        url: './images/17.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 18,
-        url: './site/images/18.jpg',
+        url: './images/18.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 19,
-        url: './site/images/19.jpg',
+        url: './images/19.jpg',
         keywords: ['funny', 'cat'],
     },
     {
         id: 20,
-        url: './site/images/20.jpg',
+        url: './images/20.jpg',
         keywords: ['funny', 'cat'],
     },
 ]
@@ -110,14 +111,14 @@ var gMeme = {
     selectedLineIdx: 0, 
     lines: [ 
             { 
-                txt: 'I sometimes eat Falafel', 
+                txt: '⏩ Put Here Your Punch Line ⏪', 
                 size: 20, 
-                color: 'red' 
+                color: gColor
             } ,
             { 
-                txt: 'I sometimes eat Falafel', 
+                txt: '', 
                 size: 20, 
-                color: 'red' 
+                color: gColor 
             } 
     ] 
 }
@@ -160,25 +161,29 @@ function setImage(elImg){
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 function getMem(elImg) {
+    gMeme.lines[gLine].txt=' '
+    gLine=0
     clearInput()
     setImage(elImg)
-    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 70, 40)
+    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 100, 50)
     gMeme.selectedImgId=gImageSrc
 }
 function changeText(){
-    // debugger
+    console.log('gMeme:', gMeme)
     var userInput=document.querySelector('.txt').value
     gElText=userInput
     console.log(userInput);
     gMeme.lines[gLine].txt=userInput
+  }
+  function saveChanges(){
     var img= new Image();
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText(gMeme.lines[gLine].txt, 100, 50)
+    drawText(gMeme.lines[0].txt, 100, 50)
+    drawText(gMeme.lines[1].txt, 100, 150)
   }
 function addLine(){
-
     var img= new Image();
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width

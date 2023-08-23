@@ -1,5 +1,5 @@
 'use strict'
-let gColor = ''
+
 let gElCanvas
 let gCtx
 
@@ -33,24 +33,34 @@ function onDownloadImg(elLink) {
     elLink.href = imgContent
 }
 function onClickPlus() {
-    gMeme.lines[0].size += 1
+    gMeme.lines[gLine].size += 1
     changeText()
 }
 function onClickMinus() {
-    gMeme.lines[0].size -= 1
+    gMeme.lines[gLine].size -= 1
     changeText()
 }
 
 function onChangeClr(clr) {
     gColor = clr
-    gMeme.lines[0].color = gColor
+    gMeme.lines[gLine].color = gColor
     changeText()
     console.log('gMeme:', gMeme)
+}
+function onSave(){
+    saveChanges()
 }
 function onAddLine() {
     addLine()
 }
-function onSwitchLine(ev) {
-    gLine +=1
+function onSwitchLine() {
+    console.log('gMeme.lines.length:', gMeme.lines.length)
+    if (gLine<gMeme.lines.length-1){
+        clearInput()
+        gLine++
+    }
+    else gLine--
+    clearInput()
+    console.log('gLine', gLine)
    
 }
