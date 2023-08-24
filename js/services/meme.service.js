@@ -162,7 +162,8 @@ function setImage(elImg){
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 function getMem(elImg) {
-    gMeme.lines[gLine].txt=' '
+    gMeme.lines[0].txt=' '
+    gMeme.lines[1].txt=' '
     gLine=0
     clearInput()
     setImage(elImg)
@@ -208,3 +209,8 @@ function decreaseFont(){
 function increaseFont(){
     gSize += 1
 }
+function drawRect(x, y,h,w) {
+    // gCtx.strokeStyle = gColor
+    gCtx.strokeRect(x, y, h, w)
+    gCtx.fillStyle = 'white'
+  }

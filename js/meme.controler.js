@@ -62,9 +62,13 @@ function onSwitchLine() {
     if (gLine<gMeme.lines.length-1){
         clearInput()
         gLine++
+        // onChangeText()
+        drawRect(10, 110,800,50)
     }
-    else gLine--
+    else {gLine--
     clearInput()
-    console.log('gLine', gLine)
+    // onChangeText()
+    drawRect(10, 10,600,50)
+    console.log('gLine', gLine)}
    
 }
