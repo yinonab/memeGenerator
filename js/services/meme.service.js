@@ -179,7 +179,7 @@ function getMem(elImg) {
     gLine=0
     clearInput()
     setImage(elImg)
-    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 100, 50,gMeme.lines[0].color,gMeme.lines[0].size)
+    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 50,gMeme.lines[0].color,gMeme.lines[0].size)
     gMeme.selectedImgId=gImageSrc
 }
 function changeText(){
@@ -199,17 +199,19 @@ function changeText(){
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText(gMeme.lines[0].txt, 100, 50,gMeme.lines[0].color,gMeme.lines[0].size)
-    drawText(gMeme.lines[1].txt, 100, 150,gMeme.lines[1].color,gMeme.lines[1].size)
+    drawText(gMeme.lines[0].txt, 0, 50,gMeme.lines[0].color,gMeme.lines[0].size)
+    drawText(gMeme.lines[1].txt, 0, 150,gMeme.lines[1].color,gMeme.lines[1].size)
   }
 function addLine(){
-    if (gLine>2)return
+    console.log('variable:', gMeme.lines.length)
+    console.log('jlinr:', gLine)
+    if (gLine>=1)addClass('hidden', 'add')
     var img= new Image();
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText(gMeme.lines[gLine].txt, 100, 50,gMeme.lines[gLine].color,gMeme.lines[gLine].size)
-    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 100, 150,gMeme.lines[1].color,gMeme.lines[0].size)
+    drawText(gMeme.lines[gLine].txt, 0, 50,gMeme.lines[gLine].color,gMeme.lines[gLine].size)
+    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 150,gMeme.lines[1].color,gMeme.lines[1].size)
   }
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')

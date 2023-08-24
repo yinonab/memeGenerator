@@ -23,26 +23,30 @@
             <div class="inputs">
                 <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text"
                     id="textInput">
-                <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
+                    <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr"
+                    name="clr">
+                <label for="clr"></label>
+                
 
             </div>
             <nav class="edit">
                 <!-- <button onclick="onSave(this)">Save Changes</button> -->
-                <button onclick="onAddLine(this)">Add Line</button>
+                <button class="add" onclick="onAddLine(this)">Add Line</button>
                 <button class="increase" onclick="onClickPlus(this)">➕</button>
                 <button class="decrease" onclick="onClickMinus(this)">➖</button>
                 <button class="decrease" onclick="onSwitchLine(this)">🔃</button>
-                <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr"
-                    name="clr">
-                <label for="clr"></label>
+                
+                <button><a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg"> ⏬</a></button>
+                <button class="btn" onclick="onUploadImg()">
+                     ⏫
+                  </button>
             </nav>
-            <canvas width="550" height="550">
+            <canvas width="450" height="450">
             </canvas>
         </div>
         <!-- <input type="text" class="txt" placeholder="Put Here Your Punch Line"> -->
         </div>
         <div class="images-container">
-            <h3>Select an image</h3>
             <section class="select-img-container">
                 <!-- <img class="image" src="site/images/1.jpg" onclick="onSelectImg()" />
         <img class="image" src="site/images/2.jpg" onclick="onSelectImg(this)" />
