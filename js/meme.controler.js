@@ -33,19 +33,23 @@ function onDownloadImg(elLink) {
     elLink.href = imgContent
 }
 function onClickPlus() {
-    gMeme.lines[gLine].size += 1
-    changeText()
+   increaseFont()
+   saveChanges()
 }
 function onClickMinus() {
-    gMeme.lines[gLine].size -= 1
-    changeText()
+    decreaseFont()
+    saveChanges()
 }
 
-function onChangeClr(clr) {
-    gColor = clr
-    gMeme.lines[gLine].color = gColor
+function onChangeClr() {
+    changeClr()
+    saveChanges()
+
+}
+function onChangeText() {
     changeText()
-    console.log('gMeme:', gMeme)
+    saveChanges()
+
 }
 function onSave(){
     saveChanges()

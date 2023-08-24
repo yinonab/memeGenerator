@@ -3,6 +3,7 @@ var gImageSrc
 var gSrcImg=''
 var gElText
 var gLine =0
+var gSize=20
 let gColor 
 var gImages = [
     {
@@ -113,12 +114,12 @@ var gMeme = {
             { 
                 txt: '⏩ Put Here Your Punch Line ⏪', 
                 size: 20, 
-                color: gColor
+                color: ""
             } ,
             { 
                 txt: '', 
                 size: 20, 
-                color: gColor 
+                color:  ""
             } 
     ] 
 }
@@ -143,8 +144,8 @@ function getEvPos(ev) {
 function drawText(text, x, y) {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'white'
-    gCtx.fillStyle = gMeme.lines[gLine].color
-    gCtx.font = gMeme.lines[gLine].size+'px Arial'
+    gCtx.fillStyle = gColor
+    gCtx.font = gSize+'px Arial'
     gCtx.fillText(text, x, y)
 
 }
@@ -175,6 +176,11 @@ function changeText(){
     console.log(userInput);
     gMeme.lines[gLine].txt=userInput
   }
+  function changeClr(){
+      var userclr=document.querySelector('.clr').value
+      gColor=userclr
+      gMeme.lines[gLine].color=userclr
+  }
   function saveChanges(){
     var img= new Image();
     img.src=gMeme.selectedImgId
@@ -194,4 +200,11 @@ function addLine(){
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.clientWidth - 2
+}
+function decreaseFont(){
+   gSize=-1
+
+}
+function increaseFont(){
+    gSize += 1
 }

@@ -13,13 +13,13 @@
         <nav class="main-nav">
             <h1>MEME-GENERATOR</h1>
             <button onclick="onOpenGallery()">Gallery</button>
-            <input oninput="changeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text" id="textInput">
-            <button onclick="onSave(this)">Save Changes</button>
+            <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text" id="textInput">
+            <!-- <button onclick="onSave(this)">Save Changes</button> -->
             <button onclick="onAddLine(this)">Add Line</button>
             <button class="increase" onclick="onClickPlus(this)">➕</button>
             <button class="decrease" onclick="onClickMinus(this)" >➖</button>
             <button class="decrease" onclick="onSwitchLine(this)" >🔃</button>
-            <input type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr" name="clr">
+            <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr" name="clr">
             <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Meme</a>
     <label for="clr"></label>
         </nav>
