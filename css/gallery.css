@@ -1,0 +1,20 @@
+.select-img-container {
+    margin-top: 15px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  
+  }
+  
+  img {
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+    filter:grayscale(.8)
+  }
+  
+  img:hover {
+    transition: 0.5s;
+    filter: unset;
+  }
