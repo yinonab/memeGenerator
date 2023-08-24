@@ -5,6 +5,9 @@ var gElText
 var gLine =0
 var gSize=20
 let gColor 
+let gIsDrag=false
+let prevCursorPos = { x: 0, y: 0 }
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 var gImages = [
     {
         id: 1,
@@ -123,6 +126,14 @@ var gMeme = {
             } 
     ] 
 }
+function openGallery(){
+    removeClass('hidden', 'images-container')
+    addClass('hidden', 'canvas-container')
+}
+function openEditor(){
+    removeClass('hidden', 'canvas-container')
+    addClass('hidden', 'images-container')
+}
 
 function getEvPos(ev) {
 
@@ -152,9 +163,10 @@ function drawText(text, x, y,clr,size) {
 function clearInput(){
     var userInput=document.querySelector('.txt')
     userInput.value=''
-    gMeme.lines[gLine].size=20
+    gMeme.lines[gLine].size=gSize
 }
 function setImage(elImg){
+    openEditor()
     gImageSrc=elImg.dataset.img
     var img= new Image();
     img.src=gImageSrc
@@ -191,6 +203,7 @@ function changeText(){
     drawText(gMeme.lines[1].txt, 100, 150,gMeme.lines[1].color,gMeme.lines[1].size)
   }
 function addLine(){
+    if (gLine>2)return
     var img= new Image();
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
@@ -240,23 +253,31 @@ function drawRect(x, y,h,w) {
   }
 
   function onDown(ev) {
+
     gIsDrag = true
     const pos = getEvPos(ev)
+    console.log('ev:', ev)
+    console.log('pos:', pos)
+    if (pos.x)
     gCtx.beginPath()
     gCtx.moveTo(pos.x, pos.y)
-    onDraw(pos.x, pos.y)
+    // onDraw(pos.x, pos.y)
   }
   
-//   function onMove(ev) {
-//     if (!gIsDrag) return
-//     const pos = getEvPos(ev)
-//     onDraw(pos.x, pos.y)
-//     gCtx.lineWidth = 2
-//     gCtx.stroke()
-//     prevCursorPos = pos
-//   }
+  function onMove(ev) {
+    if (!gIsDrag) return
+    const pos = getEvPos(ev)
+    drawText(gMeme.lines[gLine].txt, pos.x, pos.y,gMeme.lines[gLine].color,gMeme.lines[gLine].size)
+    drawText(pos.x, pos.y)
+    gCtx.lineWidth = 2
+    gCtx.stroke()
+    prevCursorPos = pos
+  }
   
-//   function onUp(ev) {
-//     gIsDrag = false
-//     gStartPos={}
-//   }
+  function onUp(ev) {
+    gIsDrag = false
+    // prevCursorPos = pos
+  }
+  function getLine() {
+    return gMeme.lines[gLine]
+  }

@@ -13,7 +13,10 @@ function onSelectImg(elImg) {
     getMem(elImg)
 }
 function onOpenGallery() {
-    toggleClass('hidden', 'images-container')
+   openGallery()
+}
+function onOpenEditor(){
+    openEditor()
 }
 function OnRenderMeme() {
     setImage(img)

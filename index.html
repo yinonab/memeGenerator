@@ -12,29 +12,39 @@
     <header class="header">
         <nav class="main-nav">
             <h1>MEME-GENERATOR</h1>
+            <button onclick="onOpenEditor()">Editor</button>
             <button onclick="onOpenGallery()">Gallery</button>
-            <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text" id="textInput">
-            <!-- <button onclick="onSave(this)">Save Changes</button> -->
-            <button onclick="onAddLine(this)">Add Line</button>
-            <button class="increase" onclick="onClickPlus(this)">➕</button>
-            <button class="decrease" onclick="onClickMinus(this)" >➖</button>
-            <button class="decrease" onclick="onSwitchLine(this)" >🔃</button>
-            <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr" name="clr">
-            <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download Meme</a>
-    <label for="clr"></label>
+
         </nav>
     </header>
-<main class="main-content">
-    <div class="canvas-container">
-        <canvas width="450" height="450">
-        </canvas>
-    </div>
-    <!-- <input type="text" class="txt" placeholder="Put Here Your Punch Line"> -->
-    </div>
-    <div class="images-container hidden">
-        <h3>Select an image</h3>
-        <section class="select-img-container">
-            <!-- <img class="image" src="site/images/1.jpg" onclick="onSelectImg()" />
+    <main class="main-content">
+
+        <div class="canvas-container hidden">
+            <div class="inputs">
+                <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text"
+                    id="textInput">
+                <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
+
+            </div>
+            <nav class="edit">
+                <!-- <button onclick="onSave(this)">Save Changes</button> -->
+                <button onclick="onAddLine(this)">Add Line</button>
+                <button class="increase" onclick="onClickPlus(this)">➕</button>
+                <button class="decrease" onclick="onClickMinus(this)">➖</button>
+                <button class="decrease" onclick="onSwitchLine(this)">🔃</button>
+                <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr"
+                    name="clr">
+                <label for="clr"></label>
+            </nav>
+            <canvas width="550" height="550">
+            </canvas>
+        </div>
+        <!-- <input type="text" class="txt" placeholder="Put Here Your Punch Line"> -->
+        </div>
+        <div class="images-container">
+            <h3>Select an image</h3>
+            <section class="select-img-container">
+                <!-- <img class="image" src="site/images/1.jpg" onclick="onSelectImg()" />
         <img class="image" src="site/images/2.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/3.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/4.jpg" onclick="onSelectImg(this)" />
@@ -54,10 +64,10 @@
         <img class="image" src="site/images/18.jpg" onclick="onSelectImg(this)" />
         <img class="image" src="site/images/19.jpg" onclick="onSelectImg(this)" /> 
         <img class="image" src="site/images/20.jpg" onclick="onSelectImg(this)" />  -->
-        </section>
-    </div>
-</main>
-   
+            </section>
+        </div>
+    </main>
+
     <script src="js/services/util.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/meme.controler.js"></script>
