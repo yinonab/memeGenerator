@@ -1,15 +1,12 @@
 .header .main-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    border: 2px solid black;
-    background-color: rgb(64, 61, 57);
-  }
-  
-  .header .main-nav button {
-    background-color: rgb(213, 51, 30);
-    height: 3em;
-    width: 5em;
-    margin: 5px 5px;
-  }
+  gap: 15px;
+  border: 2px solid black;
+  background-color: rgb(216, 175, 120);
+}
+
+.header .main-nav button {
+  background-color: rgb(213, 51, 30);
+  height: 3em;
+  width: 5em;
+  margin: 5px 5px;
+}

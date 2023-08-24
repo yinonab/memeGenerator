@@ -11,9 +11,15 @@
 <body class="main-layout" onload="onInit()">
     <header class="header">
         <nav class="main-nav">
-            <h1>MEME-GENERATOR</h1>
-            <button onclick="onOpenEditor()">Editor</button>
-            <button onclick="onOpenGallery()">Gallery</button>
+            <div>
+
+                <h1>MEME-GENERATOR</h1>
+            </div>
+            <div>
+                <button onclick="onOpenEditor()">Editor</button>
+                <button onclick="onOpenGallery()">Gallery</button>
+            </div>
+
 
         </nav>
     </header>
@@ -23,10 +29,10 @@
             <div class="inputs">
                 <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text"
                     id="textInput">
-                    <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr"
+                <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr"
                     name="clr">
                 <label for="clr"></label>
-                
+
 
             </div>
             <nav class="edit">
@@ -35,11 +41,11 @@
                 <button class="increase" onclick="onClickPlus(this)">➕</button>
                 <button class="decrease" onclick="onClickMinus(this)">➖</button>
                 <button class="decrease" onclick="onSwitchLine(this)">🔃</button>
-                
+
                 <button><a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg"> ⏬</a></button>
                 <button class="btn" onclick="onUploadImg()">
-                     ⏫
-                  </button>
+                    ⏫
+                </button>
             </nav>
             <canvas width="450" height="450">
             </canvas>

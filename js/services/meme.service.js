@@ -203,9 +203,7 @@ function changeText(){
     drawText(gMeme.lines[1].txt, 0, 150,gMeme.lines[1].color,gMeme.lines[1].size)
   }
 function addLine(){
-    console.log('variable:', gMeme.lines.length)
-    console.log('jlinr:', gLine)
-    if (gLine>=1)addClass('hidden', 'add')
+    addClass('hidden', 'add')
     var img= new Image();
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
@@ -230,56 +228,56 @@ function drawRect(x, y,h,w) {
     // gCtx.strokeStyle = gColor
     gCtx.strokeRect(x, y, h, w)
   }
-  function addListeners() {
-    addMouseListeners()
-    addTouchListeners()
-    //Listen for resize ev
-    window.addEventListener('resize', () => {
-      resizeCanvas()
-      // //Calc the center of the canvas
-      // const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
-      // //Create the circle in the center
-      // createCircle(center)
-      // renderCanvas()
-    })
-  }
-  function addMouseListeners() {
-    gElCanvas.addEventListener('mousedown', onDown)
-    gElCanvas.addEventListener('mousemove', onMove)
-    gElCanvas.addEventListener('mouseup', onUp)
-  }
-  function addTouchListeners() {
-    gElCanvas.addEventListener('touchstart', onDown)
-    gElCanvas.addEventListener('touchmove', onMove)
-    gElCanvas.addEventListener('touchend', onUp)
-  }
+//   function addListeners() {
+//     addMouseListeners()
+//     addTouchListeners()
+//     //Listen for resize ev
+//     window.addEventListener('resize', () => {
+//       resizeCanvas()
+//       // //Calc the center of the canvas
+//       // const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
+//       // //Create the circle in the center
+//       // createCircle(center)
+//       // renderCanvas()
+//     })
+//   }
+//   function addMouseListeners() {
+//     gElCanvas.addEventListener('mousedown', onDown)
+//     gElCanvas.addEventListener('mousemove', onMove)
+//     gElCanvas.addEventListener('mouseup', onUp)
+//   }
+//   function addTouchListeners() {
+//     gElCanvas.addEventListener('touchstart', onDown)
+//     gElCanvas.addEventListener('touchmove', onMove)
+//     gElCanvas.addEventListener('touchend', onUp)
+//   }
 
-  function onDown(ev) {
+//   function onDown(ev) {
 
-    gIsDrag = true
-    const pos = getEvPos(ev)
-    console.log('ev:', ev)
-    console.log('pos:', pos)
-    if (pos.x)
-    gCtx.beginPath()
-    gCtx.moveTo(pos.x, pos.y)
-    // onDraw(pos.x, pos.y)
-  }
+//     gIsDrag = true
+//     const pos = getEvPos(ev)
+//     console.log('ev:', ev)
+//     console.log('pos:', pos)
+//     if (pos.x)
+//     gCtx.beginPath()
+//     gCtx.moveTo(pos.x, pos.y)
+//     // onDraw(pos.x, pos.y)
+//   }
   
-  function onMove(ev) {
-    if (!gIsDrag) return
-    const pos = getEvPos(ev)
-    drawText(gMeme.lines[gLine].txt, pos.x, pos.y,gMeme.lines[gLine].color,gMeme.lines[gLine].size)
-    drawText(pos.x, pos.y)
-    gCtx.lineWidth = 2
-    gCtx.stroke()
-    prevCursorPos = pos
-  }
+//   function onMove(ev) {
+//     if (!gIsDrag) return
+//     const pos = getEvPos(ev)
+//     drawText(gMeme.lines[gLine].txt, pos.x, pos.y,gMeme.lines[gLine].color,gMeme.lines[gLine].size)
+//     drawText(pos.x, pos.y)
+//     gCtx.lineWidth = 2
+//     gCtx.stroke()
+//     prevCursorPos = pos
+//   }
   
-  function onUp(ev) {
-    gIsDrag = false
-    // prevCursorPos = pos
-  }
-  function getLine() {
-    return gMeme.lines[gLine]
-  }
+//   function onUp(ev) {
+//     gIsDrag = false
+//     // prevCursorPos = pos
+//   }
+//   function getLine() {
+//     return gMeme.lines[gLine]
+//   }
