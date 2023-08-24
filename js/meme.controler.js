@@ -7,6 +7,7 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderImagesGallery()
+    addListeners()
 }
 function onSelectImg(elImg) {
     getMem(elImg)
@@ -56,19 +57,20 @@ function onSave(){
 }
 function onAddLine() {
     addLine()
+    onSwitchLine() 
+
 }
 function onSwitchLine() {
-    console.log('gMeme.lines.length:', gMeme.lines.length)
     if (gLine<gMeme.lines.length-1){
         clearInput()
         gLine++
         // onChangeText()
-        drawRect(10, 110,800,50)
+        drawRect(10, 110,430,50)
     }
     else {gLine--
     clearInput()
     // onChangeText()
-    drawRect(10, 10,600,50)
-    console.log('gLine', gLine)}
+    drawRect(10, 10,430,50)
+    }
    
 }
