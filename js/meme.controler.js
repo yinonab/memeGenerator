@@ -11,6 +11,9 @@ function onInit() {
     // addListeners()
     resizeCanvas()
 }
+function onClearCanvas() {
+    delateLines()
+  }
 
 function onSelectImg(elImg) {
     getMem(elImg)
@@ -124,3 +127,4 @@ function onUploadImg() {
     XHR.open('POST', '//ca-upload.com/here/upload.php')
     XHR.send(formData)
   }
+  

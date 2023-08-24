@@ -138,6 +138,10 @@ function openEditor(){
     removeClass('hidden', 'editor')
     addClass('hidden', 'images-container')
 }
+function renderImg(img) {
+    // Draw the img on the canvas
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+  }
 
 function getEvPos(ev) {
 
@@ -177,7 +181,7 @@ function setImage(elImg){
     var img= new Image();
     img.src=gImageSrc
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    renderImg(img)
 }
 function getMem(elImg) {
     gMeme.lines[0].txt=' '
@@ -200,11 +204,22 @@ function changeText(){
       gColor=userclr
       gMeme.lines[gLine].color=gColor
   }
+  function delateLines(){
+    gMeme.lines[0].txt=' '
+    gMeme.lines[1].txt=' '
+    gLine=0
+    clearInput()
+    removeClass('hidden', 'add')
+    var img= new Image();
+    img.src=gMeme.selectedImgId
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    renderImg(img)
+  }
   function saveChanges(){
     var img= new Image();
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    renderImg(img)
     drawText(gMeme.lines[0].txt, 0, 50,gMeme.lines[0].color,gMeme.lines[0].size,gMeme.lines[0].font)
     drawText(gMeme.lines[1].txt, 0, 150,gMeme.lines[1].color,gMeme.lines[1].size,gMeme.lines[1].font)
   }
@@ -213,7 +228,7 @@ function addLine(){
     var img= new Image();
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    renderImg(img)
     drawText(gMeme.lines[gLine].txt, 0, 50,gMeme.lines[gLine].color,gMeme.lines[gLine].size,gMeme.lines[gLine].font)
     drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 150,gMeme.lines[1].color,gMeme.lines[1].size,gMeme.lines[1].font)
   }

@@ -26,6 +26,7 @@
     <main class="main-content">
         <main class="editor hidden">
             <div class="canvas-container">
+                
                 <div class="inputs">
                     <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text"
                         id="textInput">
@@ -49,6 +50,7 @@
                     <button class="increase" onclick="onClickPlus(this)">➕</button>
                     <button class="decrease" onclick="onClickMinus(this)">➖</button>
                     <button class="decrease" onclick="onSwitchLine(this)">🔃</button>
+                    <button onclick="onClearCanvas()">❌</button>
 
                     <button><a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg"> ⏬</a></button>
                     <button class="btn" onclick="onUploadImg()">
