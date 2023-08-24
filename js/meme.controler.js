@@ -3,13 +3,15 @@
 let gElCanvas
 let gCtx
 
+
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderImagesGallery()
-    addListeners()
+    // addListeners()
     resizeCanvas()
 }
+
 function onSelectImg(elImg) {
     getMem(elImg)
 }
@@ -37,6 +39,10 @@ function onDownloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
+function onSetFont(font) {
+    changeFont(font)
+    saveChanges()
+  }
 function onClickPlus() {
    increaseFont()
    saveChanges()

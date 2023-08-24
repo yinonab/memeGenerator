@@ -1,40 +1,38 @@
 .main-content {
     display: grid;
     justify-content: center;
-  }
-  
-  .edit {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px 10px;
-  
-  
-  }
-  
-  .edit button {
+}
+
+
+
+.edit button {
     background-color: rgb(213, 51, 30);
     height: 3em;
     width: 3em;
-  }
-  
-  .inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 10px 10px;
-  }
-  input::placeholder {
+}
+
+
+
+input::placeholder {
     color: rgb(12, 12, 13)
-  }
-  canvas {
+}
+
+canvas {
+    display: flex;
 
     background-color: rgb(74, 72, 69);
     border: 1px solid black;
-  }
-  
-  .canvas-container {
+}
+
+.canvas-container {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
     position: relative;
-  }  
+}
+
+.text {
+    font-family: impacto, sans-serif;
+    color: white;
+}

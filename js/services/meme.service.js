@@ -4,7 +4,8 @@ var gSrcImg=''
 var gElText
 var gLine =0
 var gSize=20
-let gColor 
+var gFont
+let gColor ='white'
 let gIsDrag=false
 let prevCursorPos = { x: 0, y: 0 }
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
@@ -117,21 +118,24 @@ var gMeme = {
             { 
                 txt: '⏩ Put Here Your Punch Line ⏪', 
                 size: '', 
-                color: ""
+                color: gColor,
+                font:gFont,
             } ,
             { 
                 txt: '', 
                 size: '', 
-                color:  ""
+                color:  gColor,
+                font:gFont,
             } 
     ] 
 }
+
 function openGallery(){
     removeClass('hidden', 'images-container')
-    addClass('hidden', 'canvas-container')
+    addClass('hidden', 'editor')
 }
 function openEditor(){
-    removeClass('hidden', 'canvas-container')
+    removeClass('hidden', 'editor')
     addClass('hidden', 'images-container')
 }
 
@@ -152,11 +156,13 @@ function getEvPos(ev) {
     }
     return pos
 }
-function drawText(text, x, y,clr,size) {
+function drawText(text, x, y,clr,size,font) {
     gCtx.lineWidth = 5
     gCtx.strokeStyle = clr
     gCtx.fillStyle = clr
-    gCtx.font = size+'px Arial'
+    gCtx.font = size + 'px ' + font
+    // console.log('gCtx.font:', gCtx.font)
+    // console.log('gFont:', gFont)
     gCtx.fillText(text, x, y)
 
 }
@@ -179,7 +185,7 @@ function getMem(elImg) {
     gLine=0
     clearInput()
     setImage(elImg)
-    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 50,gMeme.lines[0].color,gMeme.lines[0].size)
+    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 50,gMeme.lines[0].color,gMeme.lines[0].size,gMeme.lines[0].font)
     gMeme.selectedImgId=gImageSrc
 }
 function changeText(){
@@ -199,8 +205,8 @@ function changeText(){
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText(gMeme.lines[0].txt, 0, 50,gMeme.lines[0].color,gMeme.lines[0].size)
-    drawText(gMeme.lines[1].txt, 0, 150,gMeme.lines[1].color,gMeme.lines[1].size)
+    drawText(gMeme.lines[0].txt, 0, 50,gMeme.lines[0].color,gMeme.lines[0].size,gMeme.lines[0].font)
+    drawText(gMeme.lines[1].txt, 0, 150,gMeme.lines[1].color,gMeme.lines[1].size,gMeme.lines[1].font)
   }
 function addLine(){
     addClass('hidden', 'add')
@@ -208,8 +214,8 @@ function addLine(){
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText(gMeme.lines[gLine].txt, 0, 50,gMeme.lines[gLine].color,gMeme.lines[gLine].size)
-    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 150,gMeme.lines[1].color,gMeme.lines[1].size)
+    drawText(gMeme.lines[gLine].txt, 0, 50,gMeme.lines[gLine].color,gMeme.lines[gLine].size,gMeme.lines[gLine].font)
+    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 150,gMeme.lines[1].color,gMeme.lines[1].size,gMeme.lines[1].font)
   }
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
@@ -223,6 +229,12 @@ function decreaseFont(){
 function increaseFont(){
     gSize++
     gMeme.lines[gLine].size=gSize
+}
+function changeFont(font){
+    console.log('font:', font)
+    gFont=font
+    gMeme.lines[gLine].font=gFont
+    console.log('gFont:', gFont)
 }
 function drawRect(x, y,h,w) {
     // gCtx.strokeStyle = gColor

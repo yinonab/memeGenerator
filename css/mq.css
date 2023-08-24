@@ -9,6 +9,43 @@
 
 
 /* mobile */
+@media (min-width: 50px) {
+    .header .main-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .select-img-container {
+        margin-top: 15px;
+        border: 1px solid black;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+      
+      }
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 10px ;
+        /* background-color: rgb(213, 51, 30);
+        margin:5px 5px; */
+    }
+    .edit {
+        grid-template-columns: 1fr 1fr 1fr;
+        display: grid;
+        /* flex-direction: row-reverse; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        gap: 10px;
+        margin: 10px 10px;
+    
+    
+    }
+}
+/* medium */
 @media (min-width: 400px) {
     .header .main-nav {
         display: flex;
@@ -23,22 +60,26 @@
         gap: 5px;
       
       }
-}
-/* medium */
-@media (min-width: 600px) {
-    .header .main-nav {
+      .inputs {
         display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-      }
-      .select-img-container {
-        margin-top: 15px;
-        border: 1px solid black;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 5px;
-      
-      }
+        gap: 10px;
+        margin: 10px ;
+        /* background-color: rgb(213, 51, 30);
+        margin:5px 5px; */
+    }
+    .edit {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 10px;
+    
+    
+    }
 }
 /* large */
 @media (min-width: 1120px) {
@@ -56,4 +97,24 @@
         gap: 5px;
       
       }
+      .inputs {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 10px ;
+        /* background-color: rgb(213, 51, 30);
+        margin:5px 5px; */
+    }
+    .edit {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 10px;
+    
+    
+    }
 }

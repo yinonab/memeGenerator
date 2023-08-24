@@ -24,34 +24,44 @@
         </nav>
     </header>
     <main class="main-content">
+        <main class="editor hidden">
+            <div class="canvas-container">
+                <div class="inputs">
+                    <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text"
+                        id="textInput">
+                    <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="#FFFFFF" type="color"
+                        id="clr" name="clr">
+                    <label for="clr"></label>
+                    <select onchange="onSetFont(value)" class="fontSelector">
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="monospace">Mono-Space</option>
+                        <!-- Add more font options as needed -->
+                    </select>
 
-        <div class="canvas-container hidden">
-            <div class="inputs">
-                <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text"
-                    id="textInput">
-                <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="" type="color" id="clr"
-                    name="clr">
-                <label for="clr"></label>
 
+                </div>
+                <nav class="edit">
+                    <!-- <button onclick="onSave(this)">Save Changes</button> -->
+                    <button class="add" onclick="onAddLine(this)">Add Line</button>
+                    <button class="increase" onclick="onClickPlus(this)">➕</button>
+                    <button class="decrease" onclick="onClickMinus(this)">➖</button>
+                    <button class="decrease" onclick="onSwitchLine(this)">🔃</button>
 
+                    <button><a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg"> ⏬</a></button>
+                    <button class="btn" onclick="onUploadImg()">
+                        ⏫
+                    </button>
+                </nav>
+                <canvas width="450" height="450">
+                </canvas>
             </div>
-            <nav class="edit">
-                <!-- <button onclick="onSave(this)">Save Changes</button> -->
-                <button class="add" onclick="onAddLine(this)">Add Line</button>
-                <button class="increase" onclick="onClickPlus(this)">➕</button>
-                <button class="decrease" onclick="onClickMinus(this)">➖</button>
-                <button class="decrease" onclick="onSwitchLine(this)">🔃</button>
+            <!-- <input type="text" class="txt" placeholder="Put Here Your Punch Line"> -->
+            </div>
+        </main>
 
-                <button><a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg"> ⏬</a></button>
-                <button class="btn" onclick="onUploadImg()">
-                    ⏫
-                </button>
-            </nav>
-            <canvas width="450" height="450">
-            </canvas>
-        </div>
-        <!-- <input type="text" class="txt" placeholder="Put Here Your Punch Line"> -->
-        </div>
         <div class="images-container">
             <section class="select-img-container">
                 <!-- <img class="image" src="site/images/1.jpg" onclick="onSelectImg()" />
