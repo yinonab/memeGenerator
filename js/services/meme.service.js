@@ -255,6 +255,9 @@ function drawRect(x, y,h,w) {
     // gCtx.strokeStyle = gColor
     gCtx.strokeRect(x, y, h, w)
   }
+
+  
+
 //   function addListeners() {
 //     addMouseListeners()
 //     addTouchListeners()

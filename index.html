@@ -13,11 +13,15 @@
         <nav class="main-nav">
             <div>
 
-                <h1>MEME-GENERATOR</h1>
+                <h1 data-trans="mem-generator">MEME-GENERATOR</h1>
             </div>
             <div>
-                <button onclick="onOpenEditor()">Editor</button>
-                <button onclick="onOpenGallery()">Gallery</button>
+                <button data-trans="editor" onclick="onOpenEditor()">Editor</button>
+                <button data-trans="gallery" onclick="onOpenGallery()">Gallery</button>
+                <select class="lang" onchange="onSetLang(this.value)">
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                </select>
             </div>
 
 
@@ -28,17 +32,17 @@
             <div class="canvas-container">
                 
                 <div class="inputs">
-                    <input oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text"
+                    <input data-trans="place" oninput="onChangeText()" value="" class="txt" placeholder="Edit Your Punch Line" type="text"
                         id="textInput">
                     <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="#FFFFFF" type="color"
                         id="clr" name="clr">
                     <label for="clr"></label>
                     <select onchange="onSetFont(value)" class="fontSelector">
-                        <option value="Arial">Arial</option>
-                        <option value="Times New Roman">Times New Roman</option>
-                        <option value="Courier New">Courier New</option>
-                        <option value="fantasy">Fantasy</option>
-                        <option value="monospace">Mono-Space</option>
+                        <option data-trans="ariel" value="Arial">Arial</option>
+                        <option data-trans="time" value="Times New Roman">Times New Roman</option>
+                        <option data-trans="new" value="Courier New">Courier New</option>
+                        <option data-trans="fantasy" value="fantasy">Fantasy</option>
+                        <option data-trans="monospace" value="monospace">Mono-Space</option>
                         <!-- Add more font options as needed -->
                     </select>
 
@@ -46,7 +50,7 @@
                 </div>
                 <nav class="edit">
                     <!-- <button onclick="onSave(this)">Save Changes</button> -->
-                    <button class="add" onclick="onAddLine(this)">Add Line</button>
+                    <button data-trans="add" class="add" onclick="onAddLine(this)">Add Line</button>
                     <button class="increase" onclick="onClickPlus(this)">➕</button>
                     <button class="decrease" onclick="onClickMinus(this)">➖</button>
                     <button class="decrease" onclick="onSwitchLine(this)">🔃</button>
@@ -91,6 +95,7 @@
     </main>
 
     <script src="js/services/util.service.js"></script>
+    <script src="js/services/i18n.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/meme.controler.js"></script>
 </body>
