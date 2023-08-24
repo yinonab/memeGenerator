@@ -69,12 +69,12 @@ function onSwitchLine() {
         clearInput()
         gLine++
         // onChangeText()
-        drawRect(10, 110,430,50)
+        drawRect(0, 110,430,50)
     }
     else {gLine--
     clearInput()
     // onChangeText()
-    drawRect(10, 10,430,50)
+    drawRect(0, 10,430,50)
     }
    
 }
