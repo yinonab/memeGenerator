@@ -1,4 +1,5 @@
 'use strict'
+const STORAGE_KEY = 'memeDB'
 var gImageSrc
 var gSrcImg=''
 var gElText
@@ -129,7 +130,28 @@ var gMeme = {
             } 
     ] 
 }
-
+function _saveMemeToStorage() {
+    saveToStorage(STORAGE_KEY, gMeme)
+}
+function _createMems() {
+    var gMeme = loadFromStorage(STORAGE_KEY)
+    if (!gMeme) {
+        gMeme = 
+            { 
+                txt: '⏩ Put Here Your Punch Line ⏪', 
+                size: gSize, 
+                color: gColor,
+                font:gFont,
+            } ,
+            { 
+                txt: '', 
+                size: gSize, 
+                color:  gColor,
+                font:gFont,
+            } 
+    }
+    _saveBookToStorage()
+}
 function openGallery(){
     removeClass('hidden', 'images-container')
     addClass('hidden', 'editor')
@@ -198,6 +220,7 @@ function changeText(){
     gElText=userInput
     console.log(userInput);
     gMeme.lines[gLine].txt=userInput
+    _saveMemeToStorage()
   }
   function setEmoji(emg){
       let x=getRandomInt(1,300)
@@ -212,6 +235,7 @@ function changeText(){
       let userclr=document.querySelector('.clr').value
       gColor=userclr
       gMeme.lines[gLine].color=gColor
+      _saveMemeToStorage()
   }
   function delateLines(){
     gMeme.lines[0].txt=' '
@@ -223,6 +247,7 @@ function changeText(){
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
+    _saveMemeToStorage()
   }
   function saveChanges(){
     var img= new Image();
@@ -252,17 +277,20 @@ function resizeCanvas() {
 function decreaseFont(){
    gSize--
    gMeme.lines[gLine].size=gSize
+   _saveMemeToStorage()
 
 }
 function increaseFont(){
     gSize++
     gMeme.lines[gLine].size=gSize
+    _saveMemeToStorage()
 }
 function changeFont(font){
     console.log('font:', font)
     gFont=font
     gMeme.lines[gLine].font=gFont
     console.log('gFont:', gFont)
+    _saveMemeToStorage()
 }
 function drawRect(x, y,h,w) {
     // gCtx.strokeStyle = gColor

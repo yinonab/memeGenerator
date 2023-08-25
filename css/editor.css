@@ -1,8 +1,16 @@
 .main-content {
     display: grid;
     justify-content: center;
+    
 }
-
+.editor{
+    box-shadow: rgba(137, 130, 130, 0.25)
+    0px 54px 55px, rgba(137, 130, 130, 0.25)
+     0px -12px 30px, rgba(137, 130, 130, 0.25)
+      0px 4px 6px, rgba(137, 130, 130, 0.25)
+       0px 12px 13px, rgba(137, 130, 130, 0.25)
+        0px -3px 5px;
+}
 
 
 .edit button {
@@ -30,10 +38,14 @@ canvas {
     justify-items: center;
     align-items: center;
     position: relative;
+   
 }
 
 .text {
     font-family: impacto, sans-serif;
     color: white;
+}
+a{
+    text-decoration: none;
 }
 

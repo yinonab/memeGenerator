@@ -1,4 +1,16 @@
-
+h1{
+    font-size: larger;
+    text-align: center;
+    color: white;
+}
+.gallery{
+    box-shadow: rgba(137, 130, 130, 0.25)
+     0px 54px 55px, rgba(137, 130, 130, 0.25)
+      0px -12px 30px, rgba(137, 130, 130, 0.25)
+       0px 4px 6px, rgba(137, 130, 130, 0.25)
+        0px 12px 13px, rgba(137, 130, 130, 0.25)
+         0px -3px 5px;
+}
   
   img {
     height: 80px;
