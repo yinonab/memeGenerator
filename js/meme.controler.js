@@ -24,16 +24,16 @@ function onOpenGallery() {
 function onOpenEditor(){
     openEditor()
 }
-function OnRenderMeme() {
-    setImage(img)
-    drawText('Put Here Your Punch Line', 125, 125)
+// function OnRenderMeme() {
+//     setImage(img)
+//     drawText('Put Here Your Punch Line', 125, 125)
 
-}
+// }
 function renderImagesGallery() {
-    var imges = gImages
+    let imges = gImages
     console.log('image.id:', imges.url)
     console.log('variable:', imges.url)
-    var strHtml = imges.map(img => `
+    let strHtml = imges.map(img => `
     <img data-img="${img.url}" class="image" src="${img.url}" onclick="onSelectImg(this)" />
     `).join('')
     setElHtml('select-img-container', strHtml)

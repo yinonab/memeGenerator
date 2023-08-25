@@ -160,7 +160,7 @@ function getEvPos(ev) {
     }
     return pos
 }
-function drawText(text, x, y,clr,size,font) {
+function renderText(text, x, y,clr,size,font) {
     gCtx.lineWidth = 5
     gCtx.strokeStyle = clr
     gCtx.fillStyle = clr
@@ -171,14 +171,14 @@ function drawText(text, x, y,clr,size,font) {
 
 }
 function clearInput(){
-    var userInput=document.querySelector('.txt')
+    let userInput=document.querySelector('.txt')
     userInput.value=''
     gMeme.lines[gLine].size=gSize
 }
 function setImage(elImg){
     openEditor()
     gImageSrc=elImg.dataset.img
-    var img= new Image();
+    let img= new Image();
     img.src=gImageSrc
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
@@ -189,7 +189,7 @@ function getMem(elImg) {
     gLine=0
     clearInput()
     setImage(elImg)
-    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 50,gMeme.lines[0].color,gMeme.lines[0].size,gMeme.lines[0].font)
+    renderText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 50,gMeme.lines[0].color,gMeme.lines[0].size,gMeme.lines[0].font)
     gMeme.selectedImgId=gImageSrc
 }
 function changeText(){
@@ -200,7 +200,7 @@ function changeText(){
     gMeme.lines[gLine].txt=userInput
   }
   function changeClr(){
-      var userclr=document.querySelector('.clr').value
+      let userclr=document.querySelector('.clr').value
       gColor=userclr
       gMeme.lines[gLine].color=gColor
   }
@@ -220,8 +220,7 @@ function changeText(){
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
-    drawText(gMeme.lines[0].txt, 0, 50,gMeme.lines[0].color,gMeme.lines[0].size,gMeme.lines[0].font)
-    drawText(gMeme.lines[1].txt, 0, 150,gMeme.lines[1].color,gMeme.lines[1].size,gMeme.lines[1].font)
+    setText()
   }
 function addLine(){
     addClass('hidden', 'add')
@@ -229,8 +228,13 @@ function addLine(){
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
-    drawText(gMeme.lines[gLine].txt, 0, 50,gMeme.lines[gLine].color,gMeme.lines[gLine].size,gMeme.lines[gLine].font)
-    drawText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 150,gMeme.lines[1].color,gMeme.lines[1].size,gMeme.lines[1].font)
+    setText()
+  }
+  function setText(){
+    gMeme.lines.forEach((line,idx)=>{
+        renderText(line.txt,0,50+idx*100,line.color,line.size,line.font)
+        
+    });
   }
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
