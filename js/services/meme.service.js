@@ -199,6 +199,15 @@ function changeText(){
     console.log(userInput);
     gMeme.lines[gLine].txt=userInput
   }
+  function setEmoji(emg){
+      let x=getRandomInt(1,300)
+      let y=getRandomInt(1,300)
+    const emojiSize = 40;
+    const emojiX = x;
+    const emojiY = y;
+    gCtx.font = `${emojiSize}px sans-serif`;
+    gCtx.fillText(emg, emojiX, emojiY);
+  }
   function changeClr(){
       let userclr=document.querySelector('.clr').value
       gColor=userclr

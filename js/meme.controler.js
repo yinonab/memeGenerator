@@ -46,6 +46,9 @@ function onSetFont(font) {
     changeFont(font)
     saveChanges()
   }
+  function onSetEmojis(emg){
+    setEmoji(emg)
+  }
 function onClickPlus() {
    increaseFont()
    saveChanges()
