@@ -20,7 +20,7 @@
             <div>
                 <button data-trans="editor" onclick="onOpenEditor()">Editor</button>
                 <button data-trans="gallery" onclick="onOpenGallery()">Gallery</button>
-                <select class="lang" onchange="onSetLang(this.value)">
+                <select class="lang box" onchange="onSetLang(this.value)">
                     <option value="en">English</option>
                     <option value="he">עברית</option>
                 </select>
@@ -39,7 +39,7 @@
                     <input class="clr" type="color" oninput="onChangeClr(value ,event)" value="#FFFFFF" type="color"
                         id="clr" name="clr">
                     <label for="clr"></label>
-                    <select onchange="onSetFont(value)" class="fontSelector">
+                    <select class="box" onchange="onSetFont(value)" class="fontSelector">
                         <option data-trans="ariel" value="Arial">Arial</option>
                         <option data-trans="time" value="Times New Roman">Times New Roman</option>
                         <option data-trans="new" value="Courier New">Courier New</option>
@@ -47,7 +47,7 @@
                         <option data-trans="monospace" value="monospace">Mono-Space</option>
                         <!-- Add more font options as needed -->
                     </select>
-                    <select onchange="onSetEmojis(value)" class="fontSelector">
+                    <select class="box" onchange="onSetEmojis(value)" class="fontSelector">
                         <option  value="😀">😀</option>
                         <option  value="😁">😁</option>
                         <option  value="🤣">🤣</option>
