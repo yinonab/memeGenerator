@@ -151,6 +151,7 @@ function _createMems() {
             } 
     }
     _saveBookToStorage()
+    return gMeme
 }
 function openGallery(){
     removeClass('hidden', 'images-container')
@@ -206,13 +207,11 @@ function setImage(elImg){
     renderImg(img)
 }
 function getMem(elImg) {
-    gMeme.lines[0].txt=' '
-    gMeme.lines[1].txt=' '
     gLine=0
     clearInput()
     setImage(elImg)
-    renderText(' ⏩ Put Here Your Punch Line ⏪ ', 0, 50,gMeme.lines[0].color,gMeme.lines[0].size,gMeme.lines[0].font)
     gMeme.selectedImgId=gImageSrc
+    saveChanges()
 }
 function changeText(){
     console.log('gMeme:', gMeme)
@@ -238,8 +237,7 @@ function changeText(){
       _saveMemeToStorage()
   }
   function delateLines(){
-    gMeme.lines[0].txt=' '
-    gMeme.lines[1].txt=' '
+    gMeme.lines[gLine].txt=' '
     gLine=0
     clearInput()
     removeClass('hidden', 'add')
@@ -247,7 +245,7 @@ function changeText(){
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
-    _saveMemeToStorage()
+    saveChanges()
   }
   function saveChanges(){
     var img= new Image();
@@ -258,11 +256,7 @@ function changeText(){
   }
 function addLine(){
     addClass('hidden', 'add')
-    var img= new Image();
-    img.src=gMeme.selectedImgId
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    renderImg(img)
-    setText()
+    saveChanges()
   }
   function setText(){
     gMeme.lines.forEach((line,idx)=>{
