@@ -1,16 +1,16 @@
 'use strict'
 const STORAGE_KEY = 'memeDB'
-var gImageSrc
-var gSrcImg=''
-var gElText
-var gLine =0
-var gSize=20
-var gFont
+let gImageSrc
+let gSrcImg=''
+let gElText
+let gLine =0
+let gSize=20
+let gFont
 let gColor ='white'
 let gIsDrag=false
 let prevCursorPos = { x: 0, y: 0 }
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
-var gImages = [
+let gImages = [
     {
         id: 1,
         url: './images/1.jpg',
@@ -238,9 +238,9 @@ function changeText(){
   }
   function delateLines(){
     gMeme.lines[gLine].txt=' '
+    if (gLine!==0){removeClass('hidden', 'add')} 
     gLine=0
     clearInput()
-    removeClass('hidden', 'add')
     var img= new Image();
     img.src=gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
