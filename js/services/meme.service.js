@@ -286,6 +286,7 @@ function drawRect(x, y,h,w) {
     gMeme.lines[1].txt=' '
     clearInput()
     gLine=0
+    gSize=20
     removeClass('hidden', 'add')
     localStorage.clear()
   }
