@@ -287,6 +287,7 @@ function drawRect(x, y,h,w) {
     clearInput()
     gLine=0
     gSize=20
+    gColor ='white'
     removeClass('hidden', 'add')
     localStorage.clear()
   }
