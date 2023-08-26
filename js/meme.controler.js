@@ -90,6 +90,10 @@ function onSwitchLine() {
     }
    
 }
+function onReset(){
+    reset()
+    saveChanges()
+}
 function onUploadImg() {
     // Gets the image from the canvas
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg') 

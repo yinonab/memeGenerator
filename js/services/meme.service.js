@@ -112,24 +112,7 @@ let gImages = [
         keywords: ['funny', 'cat'],
     },
 ]
-var gMeme = { 
-    selectedImgId: gImageSrc, 
-    selectedLineIdx: 0, 
-    lines: [ 
-            { 
-                txt: '⏩ Put Here Your Punch Line ⏪', 
-                size: '', 
-                color: gColor,
-                font:gFont,
-            } ,
-            { 
-                txt: '', 
-                size: '', 
-                color:  gColor,
-                font:gFont,
-            } 
-    ] 
-}
+var gMeme
 function _saveMemeToStorage() {
     saveToStorage(STORAGE_KEY, gMeme)
 }
@@ -137,20 +120,26 @@ function _createMems() {
     var gMeme = loadFromStorage(STORAGE_KEY)
     if (!gMeme) {
         gMeme = 
-            { 
-                txt: '⏩ Put Here Your Punch Line ⏪', 
-                size: gSize, 
-                color: gColor,
-                font:gFont,
-            } ,
-            { 
-                txt: '', 
-                size: gSize, 
-                color:  gColor,
-                font:gFont,
-            } 
+        { 
+            selectedImgId: gImageSrc, 
+            selectedLineIdx: 0, 
+            lines: [ 
+                    { 
+                        txt: '⏩ Put Here Your Punch Line ⏪', 
+                        size: '', 
+                        color: gColor,
+                        font:gFont,
+                    } ,
+                    { 
+                        txt: '', 
+                        size: '', 
+                        color:  gColor,
+                        font:gFont,
+                    } 
+            ] 
+        }
     }
-    _saveBookToStorage()
+    // _saveBookToStorage()
     return gMeme
 }
 function openGallery(){
@@ -207,6 +196,7 @@ function setImage(elImg){
     renderImg(img)
 }
 function getMem(elImg) {
+    gMeme=_createMems()
     gLine=0
     clearInput()
     setImage(elImg)
@@ -289,6 +279,15 @@ function changeFont(font){
 function drawRect(x, y,h,w) {
     // gCtx.strokeStyle = gColor
     gCtx.strokeRect(x, y, h, w)
+  }
+
+  function reset(){
+    gMeme.lines[0].txt=' '
+    gMeme.lines[1].txt=' '
+    clearInput()
+    gLine=0
+    removeClass('hidden', 'add')
+    localStorage.clear()
   }
 
   
