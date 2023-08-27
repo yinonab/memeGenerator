@@ -274,7 +274,6 @@ function changeFont(font) {
 function drawRect(x, y, h, w) {
     gCtx.strokeRect(x, y, h, w)
 }
-
 function reset() {
     gMeme.selectedLineIdx = 0
     gSize = 20

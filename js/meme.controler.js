@@ -91,6 +91,15 @@ function onUploadImg() {
     }
     doUploadImg(imgDataUrl, onSuccess)
 }
+function onShareWhatsapp(){
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+    function onSuccess(uploadedImgUrl) {
+        const url = encodeURIComponent(uploadedImgUrl)
+        var whatsappUrl = "https://api.whatsapp.com/send?text=Check%20out%20this%20image!&data-url=" + encodeURIComponent(imgDataUrl)
+        window.open(whatsappUrl, '_blank')
+    }
+    doUploadImg(imgDataUrl, onSuccess)
+}
 function doUploadImg(imgDataUrl, onSuccess) {
     // Pack the image for delivery
     const formData = new FormData()
