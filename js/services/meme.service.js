@@ -182,7 +182,7 @@ function setBorder(){
     )
 }
 function getSelectedLine() {
-    return gMeme.lines[gMeme.selectedLineIdx]
+    return gMeme.lines[gMeme.selectedLineIdx];
 }
 function setText() {
     gMeme.lines.forEach((line) => {
@@ -201,7 +201,6 @@ function setImage(elImg) {
     img.src = gImageSrc
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
-    
 }
 function getMem(elImg) {
     gMeme = _createMems()
@@ -210,6 +209,7 @@ function getMem(elImg) {
     setImage(elImg)
     gMeme.selectedImgId = gImageSrc
     saveChanges()
+
 }
 function changeText() {
     var userInput = document.querySelector('.txt').value
