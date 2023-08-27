@@ -116,9 +116,6 @@ var gMeme
 function _saveMemeToStorage() {
     saveToStorage(STORAGE_KEY, gMeme)
 }
-function getSelectedLine() {
-    return gMeme.lines[gMeme.selectedLineIdx];
-}
 function _createMems() {
     var gMeme = loadFromStorage(STORAGE_KEY)
     if (!gMeme) {
@@ -162,24 +159,15 @@ function openEditor() {
 function renderImg(img) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
-function setImage(elImg) {
-    openEditor()
-    gImageSrc = elImg.dataset.img
-    let img = new Image();
-    img.src = gMeme.selectedImgId
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    renderImg(img)
-}
 function renderText(line) {
+    console.log('line:', line)
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'black'
     gCtx.fillStyle = line.color
     gCtx.textAlign = line.align
     gCtx.font = `${line.size}px ${line.font}`
-    console.log('gCtx.font:', gCtx.font)
     gCtx.fillText(line.txt, line.x, line.y)
     const textWidth = gCtx.measureText(line.txt).width;
-    console.log('textWidth:', textWidth)
     const padding = 5;
     const textHeight = line.size;
     drawRect(
@@ -188,6 +176,9 @@ function renderText(line) {
         textWidth + 2 * padding,
         textHeight + 3 * padding
     )
+}
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx];
 }
 function setText() {
     gMeme.lines.forEach((line) => {
@@ -198,6 +189,14 @@ function clearInput() {
     let userInput = document.querySelector('.txt')
     userInput.value = ''
 }
+function setImage(elImg) {
+    openEditor()
+    gImageSrc = elImg.dataset.img
+    let img = new Image();
+    img.src = gImageSrc
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    renderImg(img)
+}
 function getMem(elImg) {
     gMeme = _createMems()
     gMeme.selectedLineIdx = 0
@@ -205,6 +204,7 @@ function getMem(elImg) {
     setImage(elImg)
     gMeme.selectedImgId = gImageSrc
     saveChanges()
+
 }
 function changeText() {
     var userInput = document.querySelector('.txt').value
@@ -269,28 +269,18 @@ function changeFont(font) {
 function drawRect(x, y, h, w) {
     gCtx.strokeRect(x, y, h, w)
 }
+
 function reset() {
-    gMeme.lines[0].txt = ''
-    gMeme.lines[1].txt = ''
-    gMeme.lines[0].color = 'white'
-    gMeme.lines[1].color = 'white'
-    gMeme.lines[0].font = gFont
-    gMeme.lines[1].font = gFont
-    gMeme.lines[0].size = gSize
-    gMeme.lines[1].size = gSize
-    gMeme.lines[0].x = 0
-    gMeme.lines[1].x = 0
-    gMeme.lines[0].y = 50
-    gMeme.lines[1].y = 150
-    clearInput()
     gMeme.selectedLineIdx = 0
     gSize = 20
     gColor = 'white'
+    gMeme.lines.forEach((line,idx) => {
+        renderText(line.txt='',line.color='white',line.font=gFont,line.size=gSize,line.x=0,line.y=50*(idx+1))
+    })
+    clearInput()
     removeClass('hidden', 'add')
     localStorage.clear()
 }
-
-
 function getEvPos(ev) {
     let pos = {
         x: ev.offsetX,
@@ -324,12 +314,14 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 function onDown(ev) {
+
     gIsDrag = true
     const pos = getEvPos(ev)
     if (pos.x)
         gCtx.beginPath()
     gCtx.moveTo(pos.x, pos.y)
 }
+
 function onMove(ev) {
     if (!gIsDrag) return
     const pos = getEvPos(ev)
