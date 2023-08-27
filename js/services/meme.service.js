@@ -167,9 +167,13 @@ function renderText(line) {
     gCtx.textAlign = line.align
     gCtx.font = `${line.size}px ${line.font}`
     gCtx.fillText(line.txt, line.x, line.y)
-    const textWidth = gCtx.measureText(line.txt).width;
+}
+function setBorder(){
+    let line = gMeme.lines[gMeme.selectedLineIdx]
+    const textWidth = gCtx.measureText(line.txt).width
     const padding = 5;
     const textHeight = line.size;
+    gCtx.beginPath()
     drawRect(
         line.x,
         line.y - textHeight - padding,
@@ -178,12 +182,13 @@ function renderText(line) {
     )
 }
 function getSelectedLine() {
-    return gMeme.lines[gMeme.selectedLineIdx];
+    return gMeme.lines[gMeme.selectedLineIdx]
 }
 function setText() {
     gMeme.lines.forEach((line) => {
         renderText(line)
     })
+    setBorder(getSelectedLine())
 }
 function clearInput() {
     let userInput = document.querySelector('.txt')
@@ -196,6 +201,7 @@ function setImage(elImg) {
     img.src = gImageSrc
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
+    
 }
 function getMem(elImg) {
     gMeme = _createMems()
@@ -204,7 +210,6 @@ function getMem(elImg) {
     setImage(elImg)
     gMeme.selectedImgId = gImageSrc
     saveChanges()
-
 }
 function changeText() {
     var userInput = document.querySelector('.txt').value
