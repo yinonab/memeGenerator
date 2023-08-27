@@ -1,13 +1,13 @@
 'use strict'
 const STORAGE_KEY = 'memeDB'
 let gImageSrc
-let gSrcImg=''
+let gSrcImg = ''
 let gElText
-let gLine =0
-let gSize=20
-let gFont
-let gColor ='white'
-let gIsDrag=false
+let gLine = 0
+let gSize = 20
+let gFont = 'Impact'
+let gColor = 'white'
+let gIsDrag = false
 let prevCursorPos = { x: 0, y: 0 }
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 let gImages = [
@@ -116,55 +116,189 @@ var gMeme
 function _saveMemeToStorage() {
     saveToStorage(STORAGE_KEY, gMeme)
 }
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx];
+}
 function _createMems() {
     var gMeme = loadFromStorage(STORAGE_KEY)
     if (!gMeme) {
-        gMeme = 
-        { 
-            selectedImgId: gImageSrc, 
-            selectedLineIdx: 0, 
-            lines: [ 
-                    { 
-                        txt: '⏩ Put Here Your Punch Line ⏪', 
-                        size: '', 
-                        color: gColor,
-                        font:gFont,
-                    } ,
-                    { 
-                        txt: '', 
-                        size: '', 
-                        color:  gColor,
-                        font:gFont,
-                    } 
-            ] 
+        gMeme =
+        {
+            selectedImgId: gImageSrc,
+            selectedLineIdx: 0,
+            lines: [
+                {
+                    x: 10,
+                    y: 50,
+                    txt: '⏩ Put Here Your Punch Line ⏪',
+                    size: gSize,
+                    color: gColor,
+                    font: gFont,
+                    align: 'left'
+                },
+                {
+                    x: 10,
+                    y: 150,
+                    txt: '',
+                    size: gSize,
+                    color: gColor,
+                    font: gFont,
+                    align: 'left'
+                }
+            ]
         }
     }
     // _saveBookToStorage()
     return gMeme
 }
-function openGallery(){
+function openGallery() {
     removeClass('hidden', 'images-container')
     addClass('hidden', 'editor')
 }
-function openEditor(){
+function openEditor() {
     removeClass('hidden', 'editor')
     addClass('hidden', 'images-container')
 }
 function renderImg(img) {
-    // Draw the img on the canvas
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-  }
+}
+function setImage(elImg) {
+    openEditor()
+    gImageSrc = elImg.dataset.img
+    let img = new Image();
+    img.src = gMeme.selectedImgId
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    renderImg(img)
+}
+function renderText(line) {
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = 'black'
+    gCtx.fillStyle = line.color
+    gCtx.textAlign = line.align
+    gCtx.font = `${line.size}px ${line.font}`
+    console.log('gCtx.font:', gCtx.font)
+    gCtx.fillText(line.txt, line.x, line.y)
+    const textWidth = gCtx.measureText(line.txt).width;
+    console.log('textWidth:', textWidth)
+    const padding = 5;
+    const textHeight = line.size;
+    drawRect(
+        line.x,
+        line.y - textHeight - padding,
+        textWidth + 2 * padding,
+        textHeight + 3 * padding
+    )
+}
+function setText() {
+    gMeme.lines.forEach((line) => {
+        renderText(line)
+    })
+}
+function clearInput() {
+    let userInput = document.querySelector('.txt')
+    userInput.value = ''
+}
+function getMem(elImg) {
+    gMeme = _createMems()
+    gMeme.selectedLineIdx = 0
+    clearInput()
+    setImage(elImg)
+    gMeme.selectedImgId = gImageSrc
+    saveChanges()
+}
+function changeText() {
+    var userInput = document.querySelector('.txt').value
+    gElText = userInput
+    getSelectedLine().txt = userInput
+    setText()
+    _saveMemeToStorage()
+}
+function setEmoji(emg) {
+    let x = getRandomInt(1, 300)
+    let y = getRandomInt(1, 300)
+    const emojiSize = 40;
+    const emojiX = x;
+    const emojiY = y;
+    gCtx.font = `${emojiSize}px sans-serif`;
+    gCtx.fillText(emg, emojiX, emojiY);
+}
+function changeClr() {
+    let userclr = document.querySelector('.clr').value
+    gColor = userclr
+    getSelectedLine().color = gColor
+    _saveMemeToStorage()
+}
+function delateLines() {
+    getSelectedLine().txt = ' '
+    if (gMeme.selectedLineIdx !== 0) { removeClass('hidden', 'add') }
+    gMeme.selectedLineIdx = 0
+    clearInput()
+    var img = new Image();
+    img.src = gMeme.selectedImgId
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    renderImg(img)
+    saveChanges()
+}
+function saveChanges() {
+    var img = new Image();
+    img.src = gMeme.selectedImgId
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    renderImg(img)
+    setText()
+}
+function addLine() {
+    addClass('hidden', 'add')
+    saveChanges()
+}
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.clientWidth - 2
+}
+function decreaseFont() {
+    getSelectedLine().size--
+    _saveMemeToStorage()
+}
+function increaseFont() {
+    getSelectedLine().size++
+    _saveMemeToStorage()
+}
+function changeFont(font) {
+    getSelectedLine().font = font
+    _saveMemeToStorage()
+}
+function drawRect(x, y, h, w) {
+    gCtx.strokeRect(x, y, h, w)
+}
+function reset() {
+    gMeme.lines[0].txt = ''
+    gMeme.lines[1].txt = ''
+    gMeme.lines[0].color = 'white'
+    gMeme.lines[1].color = 'white'
+    gMeme.lines[0].font = gFont
+    gMeme.lines[1].font = gFont
+    gMeme.lines[0].size = gSize
+    gMeme.lines[1].size = gSize
+    gMeme.lines[0].x = 0
+    gMeme.lines[1].x = 0
+    gMeme.lines[0].y = 50
+    gMeme.lines[1].y = 150
+    clearInput()
+    gMeme.selectedLineIdx = 0
+    gSize = 20
+    gColor = 'white'
+    removeClass('hidden', 'add')
+    localStorage.clear()
+}
+
 
 function getEvPos(ev) {
-
     let pos = {
         x: ev.offsetX,
         y: ev.offsetY,
     }
-
     if (TOUCH_EVS.includes(ev.type)) {
         ev.preventDefault()
-        ev = ev.changedTouches[gLine]
+        ev = ev.changedTouches[getSelectedLine()]
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
@@ -172,178 +306,54 @@ function getEvPos(ev) {
     }
     return pos
 }
-function renderText(text, x, y,clr,size,font) {
-    gCtx.lineWidth = 5
-    gCtx.strokeStyle = clr
-    gCtx.fillStyle = clr
-    gCtx.font = size + 'px ' + font
-    // console.log('gCtx.font:', gCtx.font)
-    // console.log('gFont:', gFont)
-    gCtx.fillText(text, x, y)
-
+function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+    })
 }
-function clearInput(){
-    let userInput=document.querySelector('.txt')
-    userInput.value=''
-    gMeme.lines[gLine].size=gSize
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
 }
-function setImage(elImg){
-    openEditor()
-    gImageSrc=elImg.dataset.img
-    let img= new Image();
-    img.src=gImageSrc
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    renderImg(img)
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
 }
-function getMem(elImg) {
-    gMeme=_createMems()
-    gLine=0
-    clearInput()
-    setImage(elImg)
-    gMeme.selectedImgId=gImageSrc
-    saveChanges()
+function onDown(ev) {
+    gIsDrag = true
+    const pos = getEvPos(ev)
+    if (pos.x)
+        gCtx.beginPath()
+    gCtx.moveTo(pos.x, pos.y)
 }
-function changeText(){
-    console.log('gMeme:', gMeme)
-    var userInput=document.querySelector('.txt').value
-    gElText=userInput
-    console.log(userInput);
-    gMeme.lines[gLine].txt=userInput
-    _saveMemeToStorage()
-  }
-  function setEmoji(emg){
-      let x=getRandomInt(1,300)
-      let y=getRandomInt(1,300)
-    const emojiSize = 40;
-    const emojiX = x;
-    const emojiY = y;
-    gCtx.font = `${emojiSize}px sans-serif`;
-    gCtx.fillText(emg, emojiX, emojiY);
-  }
-  function changeClr(){
-      let userclr=document.querySelector('.clr').value
-      gColor=userclr
-      gMeme.lines[gLine].color=gColor
-      _saveMemeToStorage()
-  }
-  function delateLines(){
-    gMeme.lines[gLine].txt=' '
-    if (gLine!==0){removeClass('hidden', 'add')} 
-    gLine=0
-    clearInput()
-    var img= new Image();
-    img.src=gMeme.selectedImgId
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    renderImg(img)
-    saveChanges()
-  }
-  function saveChanges(){
-    var img= new Image();
-    img.src=gMeme.selectedImgId
+function onMove(ev) {
+    if (!gIsDrag) return
+    const pos = getEvPos(ev)
+    var img = new Image();
+    img.src = gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
     setText()
-  }
-function addLine(){
-    addClass('hidden', 'add')
-    saveChanges()
-  }
-  function setText(){
-    gMeme.lines.forEach((line,idx)=>{
-        renderText(line.txt,0,50+idx*100,line.color,line.size,line.font)
-        
-    });
-  }
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.clientWidth - 2
-}
-function decreaseFont(){
-   gSize--
-   gMeme.lines[gLine].size=gSize
-   _saveMemeToStorage()
-
-}
-function increaseFont(){
-    gSize++
-    gMeme.lines[gLine].size=gSize
+    getSelectedLine().x = pos.x
+    getSelectedLine().y = pos.y
     _saveMemeToStorage()
+    console.log('gMeme.lines.x:', gMeme.lines.x)
+    console.log('gMeme.lines.y:', gMeme.lines.y)
+
+    // setText()
+    // gMeme.lines.forEach((line, idx) => {
+    //     renderText(line.txt, line.x, line.y, line.color, line.size, line.font)
+
+    // })
+    gCtx.lineWidth = 2
+    gCtx.stroke()
+    prevCursorPos = pos
 }
-function changeFont(font){
-    console.log('font:', font)
-    gFont=font
-    gMeme.lines[gLine].font=gFont
-    console.log('gFont:', gFont)
-    _saveMemeToStorage()
+
+function onUp(ev) {
+    gIsDrag = false
 }
-function drawRect(x, y,h,w) {
-    // gCtx.strokeStyle = gColor
-    gCtx.strokeRect(x, y, h, w)
-  }
-
-  function reset(){
-    gMeme.lines[0].txt=' '
-    gMeme.lines[1].txt=' '
-    clearInput()
-    gLine=0
-    gSize=20
-    gColor ='white'
-    removeClass('hidden', 'add')
-    localStorage.clear()
-  }
-
-  
-
-//   function addListeners() {
-//     addMouseListeners()
-//     addTouchListeners()
-//     //Listen for resize ev
-//     window.addEventListener('resize', () => {
-//       resizeCanvas()
-//       // //Calc the center of the canvas
-//       // const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
-//       // //Create the circle in the center
-//       // createCircle(center)
-//       // renderCanvas()
-//     })
-//   }
-//   function addMouseListeners() {
-//     gElCanvas.addEventListener('mousedown', onDown)
-//     gElCanvas.addEventListener('mousemove', onMove)
-//     gElCanvas.addEventListener('mouseup', onUp)
-//   }
-//   function addTouchListeners() {
-//     gElCanvas.addEventListener('touchstart', onDown)
-//     gElCanvas.addEventListener('touchmove', onMove)
-//     gElCanvas.addEventListener('touchend', onUp)
-//   }
-
-//   function onDown(ev) {
-
-//     gIsDrag = true
-//     const pos = getEvPos(ev)
-//     console.log('ev:', ev)
-//     console.log('pos:', pos)
-//     if (pos.x)
-//     gCtx.beginPath()
-//     gCtx.moveTo(pos.x, pos.y)
-//     // onDraw(pos.x, pos.y)
-//   }
-  
-//   function onMove(ev) {
-//     if (!gIsDrag) return
-//     const pos = getEvPos(ev)
-//     drawText(gMeme.lines[gLine].txt, pos.x, pos.y,gMeme.lines[gLine].color,gMeme.lines[gLine].size)
-//     drawText(pos.x, pos.y)
-//     gCtx.lineWidth = 2
-//     gCtx.stroke()
-//     prevCursorPos = pos
-//   }
-  
-//   function onUp(ev) {
-//     gIsDrag = false
-//     // prevCursorPos = pos
-//   }
-//   function getLine() {
-//     return gMeme.lines[gLine]
-//   }

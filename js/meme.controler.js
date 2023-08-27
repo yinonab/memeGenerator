@@ -8,27 +8,21 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderImagesGallery()
-    // addListeners()
+    addListeners()
     resizeCanvas()
 }
 function onClearCanvas() {
     delateLines()
-  }
-
+}
 function onSelectImg(elImg) {
     getMem(elImg)
 }
 function onOpenGallery() {
-   openGallery()
+    openGallery()
 }
-function onOpenEditor(){
+function onOpenEditor() {
     openEditor()
 }
-// function OnRenderMeme() {
-//     setImage(img)
-//     drawText('Put Here Your Punch Line', 125, 125)
-
-// }
 function renderImagesGallery() {
     let imges = gImages
     console.log('image.id:', imges.url)
@@ -45,19 +39,18 @@ function onDownloadImg(elLink) {
 function onSetFont(font) {
     changeFont(font)
     saveChanges()
-  }
-  function onSetEmojis(emg){
+}
+function onSetEmojis(emg) {
     setEmoji(emg)
-  }
+}
 function onClickPlus() {
-   increaseFont()
-   saveChanges()
+    increaseFont()
+    saveChanges()
 }
 function onClickMinus() {
     decreaseFont()
     saveChanges()
 }
-
 function onChangeClr() {
     changeClr()
     saveChanges()
@@ -66,52 +59,43 @@ function onChangeClr() {
 function onChangeText() {
     changeText()
     saveChanges()
-
 }
-function onSave(){
+function onSave() {
     saveChanges()
 }
 function onAddLine() {
     addLine()
-    onSwitchLine() 
-
+    onSwitchLine()
 }
 function onSwitchLine() {
-    if (gLine<gMeme.lines.length-1){
+    if (gMeme.selectedLineIdx < gMeme.lines.length - 1) {
         clearInput()
-        gLine++
-        // onChangeText()
-        drawRect(0, 110,280,50)
+        saveChanges()
+        gMeme.selectedLineIdx++
     }
-    else {gLine--
-    clearInput()
-    // onChangeText()
-    drawRect(0, 10,280,50)
+    else {
+        clearInput()
+        saveChanges()
+        gMeme.selectedLineIdx--
     }
-   
 }
-function onReset(){
+function onReset() {
     reset()
     saveChanges()
 }
 function onUploadImg() {
-    // Gets the image from the canvas
-    const imgDataUrl = gElCanvas.toDataURL('image/jpeg') 
-  
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
     function onSuccess(uploadedImgUrl) {
-        // Handle some special characters
         const url = encodeURIComponent(uploadedImgUrl)
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
     }
-    
-    // Send the image to the server
     doUploadImg(imgDataUrl, onSuccess)
-  }
-  function doUploadImg(imgDataUrl, onSuccess) {
+}
+function doUploadImg(imgDataUrl, onSuccess) {
     // Pack the image for delivery
     const formData = new FormData()
     formData.append('img', imgDataUrl)
-  
+
     // Send a post req with the image to the server
     const XHR = new XMLHttpRequest()
     XHR.onreadystatechange = () => {
@@ -122,7 +106,7 @@ function onUploadImg() {
         const { responseText: url } = XHR
         // Same as
         // const url = XHR.responseText
-  
+
         // If the response is ok, call the onSuccess callback function, 
         // that will create the link to facebook using the url we got
         console.log('Got back live url:', url)
@@ -133,12 +117,10 @@ function onUploadImg() {
     }
     XHR.open('POST', '//ca-upload.com/here/upload.php')
     XHR.send(formData)
-  }
-  function onSetLang(lang) {
+}
+function onSetLang(lang) {
     setLang(lang)
-    // if lang is hebrew add RTL class to document.body
     if (lang === 'he') document.body.classList.add('rtl')
     else document.body.classList.remove('rtl')
     doTrans()
-
 }
