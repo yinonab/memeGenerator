@@ -136,7 +136,7 @@ function _createMems() {
                 {
                     x: 10,
                     y: 150,
-                    txt: 'text',
+                    txt: '',
                     size: gSize,
                     color: gColor,
                     font: gFont,
@@ -267,6 +267,7 @@ function saveChanges() {
     setText()
 }
 function addLine() {
+    gMeme.lines[1].txt='⏩ Put Here Your Punch Line ⏪'
     addClass('hidden', 'add')
     saveChanges()
 }
