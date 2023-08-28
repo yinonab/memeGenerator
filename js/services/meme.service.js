@@ -205,6 +205,11 @@ function setText() {
     })
     setBorder(getSelectedLine())
 }
+function setTextWIthOutBorder() {
+    gMeme.lines.forEach((line) => {
+        renderText(line)
+    })
+}
 function clearInput() {
     let userInput = document.querySelector('.txt')
     userInput.value = ''
@@ -265,6 +270,13 @@ function saveChanges() {
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
     setText()
+}
+function saveChangesBeforeDownload() {
+    var img = new Image();
+    img.src = gMeme.selectedImgId
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    renderImg(img)
+    setTextWIthOutBorder()
 }
 function addLine() {
     gMeme.lines[1].txt='⏩ Put Here Your Punch Line ⏪'

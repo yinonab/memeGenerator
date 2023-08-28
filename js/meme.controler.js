@@ -33,6 +33,7 @@ function renderImagesGallery() {
     setElHtml('select-img-container', strHtml)
 }
 function onDownloadImg(elLink) {
+    saveChangesBeforeDownload()
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
