@@ -23,7 +23,7 @@
         border: 1px solid black;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
+        gap: 25px;
       
       }
       .inputs {

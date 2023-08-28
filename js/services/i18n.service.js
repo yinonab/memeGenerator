@@ -5,6 +5,10 @@ const gTrans = {
         en:'MEME-GENERATOR',
         he:'מחולל-ממים',
     },
+    'monospace1': {
+        en: 'Select Image',
+        he: 'בחר תמונה',
+    },
     'editor':{
         en:'Editor',
         he:'עורך',
@@ -41,10 +45,7 @@ const gTrans = {
         en: 'Mono-Space',
         he: 'ירח בודד',
     },
-//     'rate-sort': {
-//         en: 'Rate',
-//         he: 'דירוג',
-//     },
+   
 //     'th-id':{
 //         en:'Id',
 //         he: 'מזהה'
