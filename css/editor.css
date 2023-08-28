@@ -15,8 +15,8 @@
 
 .edit button {
     background-color: rgb(213, 51, 30);
-    height: 3em;
-    width: 3em;
+    height: 4em;
+    width: 4em;
 }
 
 
@@ -25,11 +25,11 @@ input::placeholder {
     color: rgb(12, 12, 13)
 }
 
-canvas {
+.canvas {
     display: flex;
-
-    background-color: rgb(74, 72, 69);
-    border: 1px solid black;
+    border: 1px solid rgb(139, 10, 10);
+    /* width: 40vw; */
+    cursor: pointer;
 }
 
 .canvas-container {

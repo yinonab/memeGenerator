@@ -10,6 +10,9 @@
 
 /* mobile */
 @media (min-width: 150px) {
+    html{
+        scroll-behavior: smooth;
+    }
     .header .main-nav {
         display: flex;
         justify-content: center;

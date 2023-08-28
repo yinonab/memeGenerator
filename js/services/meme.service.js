@@ -175,13 +175,13 @@ function renderImg(img) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 function renderText(line) {
-    console.log('line:', line)
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'black'
     gCtx.fillStyle = line.color
     gCtx.textAlign = line.align
     gCtx.font = `${line.size}px ${line.font}`
     gCtx.fillText(line.txt, line.x, line.y)
+    console.log('line:', line)
 }
 function setBorder(){
     let line = gMeme.lines[gMeme.selectedLineIdx]
