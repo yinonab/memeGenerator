@@ -82,7 +82,7 @@ function onSwitchLine() {
 }
 function onReset() {
     reset()
-    saveChanges()
+    saveChangesBeforeDownload()
 }
 function onUploadImg() {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
