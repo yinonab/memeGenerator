@@ -262,7 +262,7 @@ function delateLines() {
     img.src = gMeme.selectedImgId
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     renderImg(img)
-    saveChanges()
+    saveChangesBeforeDownload()
 }
 function saveChanges() {
     var img = new Image();
