@@ -13,8 +13,8 @@ h1{
 }
   
   img {
-    height: 80px;
-    width: 80px;
+    height: 110px;
+    width: 110px;
     cursor: pointer;
     filter:grayscale(.8)
   }
