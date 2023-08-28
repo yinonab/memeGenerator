@@ -192,7 +192,7 @@ function setBorder(){
     drawRect(
         line.x,
         line.y - textHeight - padding,
-        textWidth + 2 * padding,
+        textWidth + 7 * padding,
         textHeight + 3 * padding
     )
 }
